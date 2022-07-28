@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 function AddNumbers() {
-    const [firstNum, setFirstNum] = useState(null) // state of the first input field
-    const [secNum, setsecNum] = useState(null) // state of the second input field
+    const [firstNum, setFirstNum] = useState() // state of the first input field
+    const [secNum, setsecNum] = useState() // state of the second input field
     const [sum, setSum] = useState(0) // sum of the first number and the second number
 
     // CSS styles for html
@@ -50,20 +50,29 @@ function AddNumbers() {
             <h1>Adding Two Numbers</h1>
             <form onSubmit={handleSubmit}>
                 <input 
-                    placeholder={firstNum == null ? 'First Number' : ''} 
+                    placeholder='First Number'
                     style={styles.txtInput} 
                     type='number' 
                     value={firstNum} 
-                    onChange={(e) => setFirstNum(+e.target.value)}/>
+                    onChange={(e) => setFirstNum(+e.target.value)}
+                    data-testid='firstNum'
+                />
                 <input 
-                    placeholder={secNum == null ? 'Second Number' : ''} 
+                    placeholder = 'Second Number'
                     style={styles.txtInput} 
                     type='number' 
                     value={secNum} 
-                    onChange={(e) => setsecNum(+e.target.value)}/>
-                <input style={{...styles.txtInput, ...styles.submitBtn}} type='submit' value='Add Two Numbers' />
+                    onChange={(e) => setsecNum(+e.target.value)}
+                    data-testid='secNum'
+                />
+                <input 
+                    style={{...styles.txtInput, ...styles.submitBtn}} 
+                    type='submit' 
+                    value='Add Two Numbers' 
+                    data-testid='add'
+                />
             </form>
-            <h3>Sum : {sum}</h3>
+            <h3 data-testid='result'>Sum : {sum}</h3>
         </div>
     )
 }
